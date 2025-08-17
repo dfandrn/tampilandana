@@ -3,166 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aplikasi Top Up Advanced</title>
+<title>Aplikasi Top Up Lengkap</title>
 <style>
-  body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(120deg, #f4f7fb, #e3ebf8);
-  }
-
-  .container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    padding-bottom: 110px; /* space for navbar */
-  }
-
-  h2 {
-    text-align: center;
-    color: #333;
-  }
-
-  /* List Pulsa & Listrik */
-  .topup-list {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-    justify-content: space-around;
-  }
-  .topup-item {
-    flex: 1;
-    background: #fff;
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .topup-item:hover {
-    transform: translateY(-5px) scale(1.05);
-  }
-  .topup-item img {
-    width: 50px;
-    margin-bottom: 10px;
-    transition: transform 0.3s;
-  }
-  .topup-item:hover img {
-    transform: scale(1.2);
-  }
-  .topup-item span {
-    display: block;
-    font-weight: bold;
-    color: #333;
-  }
-
-  /* Form container untuk animasi slide */
-  #formContainer {
-    position: relative;
-    min-height: 200px;
-  }
-  .form-content {
-    background: #fff;
-    border-radius: 15px;
-    padding: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 100%;
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(120deg, #f4f7fb, #e3ebf8);
+}
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-bottom: 120px; /* space for navbar */
+}
+h2 {
+  text-align: center;
+  color: #333;
+}
+/* Dua bar list */
+.topup-list {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 15px;
+  justify-content: space-around;
+}
+.topup-item {
+  flex: 1;
+  background: #fff;
+  border-radius: 15px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.topup-item:hover {
+  transform: translateY(-5px) scale(1.05);
+}
+.topup-item img {
+  width: 40px;
+  margin-bottom: 6px;
+  transition: transform 0.3s;
+}
+.topup-item:hover img {
+  transform: scale(1.2);
+}
+.topup-item span {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  font-size: 12px;
+}
+/* Form container */
+#formContainer {
+  margin-top: 10px;
+  min-height: 220px;
+}
+.form-content {
+  background: #fff;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+}
+.form-content.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.form-group {
+  margin-bottom: 15px;
+}
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+input, select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+/* Ripple button */
+.ripple-btn {
+  position: relative;
+  overflow: hidden;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.ripple-btn:hover {
+  background: #0056b3;
+  transform: scale(1.02);
+}
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  background-color: rgba(255,255,255,0.7);
+}
+@keyframes ripple {
+  to {
+    transform: scale(4);
     opacity: 0;
-    transition: all 0.5s ease;
-  }
-  .form-content.active {
-    left: 0;
-    opacity: 1;
-  }
-
-  .form-group {
-    margin-bottom: 15px;
-  }
-  label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-  }
-  input, select {
-    width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid #ccc;
-    outline: none;
-  }
-
-  /* Button ripple effect */
-  .ripple-btn {
-    position: relative;
-    overflow: hidden;
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 12px;
-    width: 100%;
-    border-radius: 12px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  .ripple-btn:hover {
-    background: #0056b3;
-    transform: scale(1.02);
-  }
-  .ripple {
-    position: absolute;
-    border-radius: 50%;
-    transform: scale(0);
-    animation: ripple 0.6s linear;
-    background-color: rgba(255,255,255,0.7);
-  }
-  @keyframes ripple {
-    to {
-      transform: scale(4);
-      opacity: 0;
-    }
-  }
-
-  /* Bottom Navbar */
-  .navbar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 70px;
-    background: #fff;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-top: 1px solid #ccc;
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
-  }
-  .nav-item {
-    text-align: center;
-    font-size: 12px;
-    color: #555;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  .nav-item.active {
-    color: #007bff;
-    font-weight: bold;
-  }
-  .nav-item img {
-    width: 25px;
-    display: block;
-    margin: 0 auto 3px;
-    transition: transform 0.3s;
-  }
-  .nav-item:hover img {
-    transform: scale(1.2);
-  }
+}
+/* Navbar bottom */
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #ccc;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+}
+.nav-item {
+  text-align: center;
+  font-size: 12px;
+  color: #555;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.nav-item.active {
+  color: #007bff;
+  font-weight: bold;
+}
+.nav-item img {
+  width: 25px;
+  display: block;
+  margin: 0 auto 3px;
+  transition: transform 0.3s;
+}
+.nav-item:hover img {
+  transform: scale(1.2);
+}
 </style>
 </head>
 <body>
@@ -170,19 +161,47 @@
 <div class="container">
   <h2>Beranda</h2>
 
-  <!-- List Pulsa & Listrik -->
+  <!-- Bar pertama -->
   <div class="topup-list">
     <div class="topup-item" onclick="showForm('pulsa')">
       <img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Pulsa">
       <span>Pulsa</span>
     </div>
+    <div class="topup-item" onclick="showForm('data')">
+      <img src="https://img.icons8.com/ios-filled/50/000000/sim-card.png" alt="Data">
+      <span>Data</span>
+    </div>
     <div class="topup-item" onclick="showForm('listrik')">
       <img src="https://img.icons8.com/ios-filled/50/000000/electricity.png" alt="Listrik">
       <span>Listrik</span>
     </div>
+    <div class="topup-item" onclick="showForm('googleplay')">
+      <img src="https://img.icons8.com/ios-filled/50/000000/google-play.png" alt="Google Play">
+      <span>Google Play</span>
+    </div>
   </div>
 
-  <!-- Form Container -->
+  <!-- Bar kedua -->
+  <div class="topup-list">
+    <div class="topup-item" onclick="showForm('topupgame')">
+      <img src="https://img.icons8.com/ios-filled/50/000000/game-controller.png" alt="Top Up Game">
+      <span>Top Up Game</span>
+    </div>
+    <div class="topup-item" onclick="showForm('bpjs')">
+      <img src="https://img.icons8.com/ios-filled/50/000000/medical-doctor.png" alt="BPJS">
+      <span>BPJS</span>
+    </div>
+    <div class="topup-item" onclick="showForm('kirimuang')">
+      <img src="https://img.icons8.com/ios-filled/50/000000/money-transfer.png" alt="Kirim Uang">
+      <span>Kirim Uang</span>
+    </div>
+    <div class="topup-item" onclick="showForm('qris')">
+      <img src="https://img.icons8.com/ios-filled/50/000000/qr-code.png" alt="QRIS">
+      <span>QRIS</span>
+    </div>
+  </div>
+
+  <!-- Form container -->
   <div id="formContainer"></div>
 
 </div>
@@ -198,8 +217,8 @@
     Aktivitas
   </div>
   <div class="nav-item">
-    <img src="https://img.icons8.com/ios-filled/50/555/card-in-use.png">
-    Pay
+    <img src="https://img.icons8.com/ios-filled/50/555/qr-code.png">
+    QRIS
   </div>
   <div class="nav-item">
     <img src="https://img.icons8.com/ios-filled/50/555/wallet.png">
@@ -212,34 +231,107 @@ const formContainer = document.getElementById('formContainer');
 
 function showForm(type) {
   let html = '';
-  if(type==='pulsa') {
-    html = `
-    <div class="form-content active" id="pulsaForm">
-      <div class="form-group"><label>Nomor HP</label><input type="text" placeholder="Masukkan Nomor HP"></div>
-      <div class="form-group"><label>Pilih Nominal</label>
-        <select>
-          <option>Rp 10.000</option>
-          <option>Rp 20.000</option>
-          <option>Rp 50.000</option>
-        </select>
-      </div>
-      <button class="ripple-btn" onclick="rippleEffect(event)">Bayar Pulsa</button>
-    </div>`;
-  } else if(type==='listrik') {
-    html = `
-    <div class="form-content active" id="listrikForm">
-      <div class="form-group"><label>Nomor Meter / ID Pelanggan</label><input type="text" placeholder="Masukkan Nomor Meter"></div>
-      <div class="form-group"><label>Pilih Nominal Token</label>
-        <select>
-          <option>Rp 20.000</option>
-          <option>Rp 50.000</option>
-          <option>Rp 100.000</option>
-        </select>
-      </div>
-      <button class="ripple-btn" onclick="rippleEffect(event)">Bayar Listrik</button>
-    </div>`;
+  switch(type){
+    case 'pulsa':
+      html = `
+      <div class="form-content active">
+        <div class="form-group"><label>Nomor HP</label><input type="text" placeholder="Masukkan Nomor HP"></div>
+        <div class="form-group"><label>Pilih Nominal</label>
+          <select>
+            <option>Rp 10.000</option>
+            <option>Rp 20.000</option>
+            <option>Rp 50.000</option>
+          </select>
+        </div>
+        <button class="ripple-btn" onclick="rippleEffect(event)">Bayar Pulsa</button>
+      </div>`;
+      break;
+    case 'data':
+      html = `
+      <div class="form-content active">
+        <div class="form-group"><label>Nomor HP</label><input type="text" placeholder="Masukkan Nomor HP"></div>
+        <div class="form-group"><label>Paket Data</label>
+          <select>
+            <option>1 GB</option>
+            <option>5 GB</option>
+            <option>10 GB</option>
+          </select>
+        </div>
+        <button class="ripple-btn" onclick="rippleEffect(event)">Beli Data</button>
+      </div>`;
+      break;
+    case 'listrik':
+      html = `
+      <div class="form-content active">
+        <div class="form-group"><label>Nomor Meter / ID Pelanggan</label><input type="text" placeholder="Masukkan Nomor Meter"></div>
+        <div class="form-group"><label>Pilih Nominal Token</label>
+          <select>
+            <option>Rp 20.000</option>
+            <option>Rp 50.000</option>
+            <option>Rp 100.000</option>
+          </select>
+        </div>
+        <button class="ripple-btn" onclick="rippleEffect(event)">Bayar Listrik</button>
+      </div>`;
+      break;
+    case 'googleplay':
+      html = `
+      <div class="form-content active">
+        <div class="form-group"><label>Nomor HP / Email</label><input type="text" placeholder="Masukkan HP/Email"></div>
+        <div class="form-group"><label>Pilih Nominal</label>
+          <select>
+            <option>Rp 50.000</option>
+            <option>Rp 100.000</option>
+            <option>Rp 200.000</option>
+          </select>
+        </div>
+        <button class="ripple-btn" onclick="rippleEffect(event)">Top Up Google Play</button>
+      </div>`;
+      break;
+    case 'topupgame':
+      html = `
+      <div class="form-content active">
+        <div class="form-group"><label>Username Game</label><input type="text" placeholder="Masukkan Username"></div>
+        <div class="form-group"><label>Pilih Nominal</label>
+          <select>
+            <option>50 Diamond</option>
+            <option>100 Diamond</option>
+            <option>200 Diamond</option>
+          </select>
+        </div>
+        <button class="ripple-btn" onclick="rippleEffect(event)">Top Up Game</button>
+      </div>`;
+      break;
+    case 'bpjs':
+      html = `
+      <div class="form-content active">
+        <div class="form-group"><label>Nomor BPJS</label><input type="text" placeholder="Masukkan Nomor BPJS"></div>
+        <div class="form-group"><label>Pilih Bulan</label>
+          <select>
+            <option>1 Bulan</option>
+            <option>3 Bulan</option>
+            <option>6 Bulan</option>
+          </select>
+        </div>
+        <button class="ripple-btn" onclick="rippleEffect(event)">Bayar BPJS</button>
+      </div>`;
+      break;
+    case 'kirimuang':
+      html = `
+      <div class="form-content active">
+        <div class="form-group"><label>Nomor Rekening / HP</label><input type="text" placeholder="Masukkan Tujuan"></div>
+        <div class="form-group"><label>Jumlah</label><input type="text" placeholder="Rp"></div>
+        <button class="ripple-btn" onclick="rippleEffect(event)">Kirim Uang</button>
+      </div>`;
+      break;
+    case 'qris':
+      html = `
+      <div class="form-content active">
+        <div class="form-group"><label>Nomor QRIS / Scan</label><input type="text" placeholder="Masukkan QRIS atau scan"></div>
+        <button class="ripple-btn" onclick="rippleEffect(event)">Bayar QRIS</button>
+      </div>`;
+      break;
   }
-
   formContainer.innerHTML = html;
 }
 
