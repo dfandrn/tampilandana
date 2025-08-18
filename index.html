@@ -3,350 +3,210 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aplikasi Top Up Lengkap</title>
+<title>DANA Demo Full</title>
 <style>
-body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(120deg, #f4f7fb, #e3ebf8);
-}
-.container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  padding-bottom: 120px; /* space for navbar */
-}
-h2 {
-  text-align: center;
-  color: #333;
-}
-/* Dua bar list */
-.topup-list {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 15px;
-  justify-content: space-around;
-}
-.topup-item {
-  flex: 1;
-  background: #fff;
-  border-radius: 15px;
-  padding: 12px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  cursor: pointer;
-  transition: 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.topup-item:hover {
-  transform: translateY(-5px) scale(1.05);
-}
-.topup-item img {
-  width: 40px;
-  margin-bottom: 6px;
-  transition: transform 0.3s;
-}
-.topup-item:hover img {
-  transform: scale(1.2);
-}
-.topup-item span {
-  display: block;
-  font-weight: bold;
-  color: #333;
-  font-size: 12px;
-}
-/* Form container */
-#formContainer {
-  margin-top: 10px;
-  min-height: 220px;
-}
-.form-content {
-  background: #fff;
-  border-radius: 15px;
-  padding: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  margin-bottom: 15px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.4s ease;
-}
-.form-content.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-.form-group {
-  margin-bottom: 15px;
-}
-label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  display: block;
-}
-input, select {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  outline: none;
-}
-/* Ripple button */
-.ripple-btn {
-  position: relative;
-  overflow: hidden;
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 12px;
-  width: 100%;
-  border-radius: 12px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.ripple-btn:hover {
-  background: #0056b3;
-  transform: scale(1.02);
-}
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple 0.6s linear;
-  background-color: rgba(255,255,255,0.7);
-}
-@keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
-}
-/* Navbar bottom */
-.navbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 70px;
-  background: #fff;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-top: 1px solid #ccc;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
-}
-.nav-item {
-  text-align: center;
-  font-size: 12px;
-  color: #555;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.nav-item.active {
-  color: #007bff;
-  font-weight: bold;
-}
-.nav-item img {
-  width: 25px;
-  display: block;
-  margin: 0 auto 3px;
-  transition: transform 0.3s;
-}
-.nav-item:hover img {
-  transform: scale(1.2);
-}
+  body{margin:0;font-family:sans-serif;background:#f4f5f7;overflow-x:hidden;}
+  .hidden{display:none;}
+  .bottom-nav{position:fixed;bottom:0;width:100%;display:flex;background:white;box-shadow:0 -2px 6px rgba(0,0,0,0.1);}
+  .bottom-nav button{flex:1;padding:12px;border:none;background:none;cursor:pointer;font-weight:bold;}
+  .bottom-nav button.active{color:#00aaef;}
+  .sheet{position:fixed;bottom:-100%;left:0;width:100%;background:white;transition:0.3s;border-top-left-radius:16px;border-top-right-radius:16px;z-index:1000;}
+  .sheet.open{bottom:0;}
+  .sheet .handle{width:40px;height:4px;background:#ccc;margin:8px auto;border-radius:2px;}
+  .sheet .title{text-align:center;font-weight:bold;margin-bottom:8px;}
+  .sheet .body{padding:16px;max-height:70vh;overflow-y:auto;}
+  .price-card{background:#fff;padding:10px;border-radius:12px;text-align:center;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.1);transition:0.2s;}
+  .price-card.active{border:2px solid #00aaef;transform:scale(1.05);}
+  .pill{font-size:10px;color:#888;}
+  .bg-white{background:white;}
+  .rounded-xl{border-radius:16px;}
+  .p-3{padding:12px;}
+  .mb-3{margin-bottom:12px;}
+  .border{border:1px solid #ddd;}
+  .text-xs{font-size:12px;}
+  .text-sm{font-size:14px;}
+  .font-semibold{font-weight:600;}
+  .flex{display:flex;}
+  .justify-between{justify-content:space-between;}
+  .items-center{align-items:center;}
+  .mt-1{margin-top:4px;}
+  .mt-2{margin-top:8px;}
+  .mt-3{margin-top:12px;}
+  .w-full{width:100%;}
+  .px-3{padding-left:12px;padding-right:12px;}
+  .py-2{padding-top:8px;padding-bottom:8px;}
+  .grid{display:grid;}
+  .grid-cols-3{grid-template-columns:repeat(3,1fr);}
+  .gap-2{gap:8px;}
+  .bg-amber-50{background:#fff8e1;}
+  .border-amber-100{border-color:#ffe082;}
+  .font-mono{font-family:monospace;}
+  button{cursor:pointer;}
+  
+  /* Custom popup */
+  .popup-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;justify-content:center;align-items:center;opacity:0;visibility:hidden;transition:0.3s;z-index:9999;}
+  .popup-overlay.show{opacity:1;visibility:visible;}
+  .popup-content{background:white;padding:20px;border-radius:16px;max-width:300px;width:90%;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);}
+  .popup-title{font-weight:bold;font-size:16px;margin-bottom:10px;}
+  .popup-message{font-size:14px;margin-bottom:20px;}
+  .popup-buttons button{padding:8px 16px;border:none;border-radius:8px;margin:0 5px;cursor:pointer;}
+  .popup-ok{background:#00aaef;color:white;}
+  .popup-cancel{background:#ccc;color:#333;}
 </style>
 </head>
 <body>
 
-<div class="container">
-  <h2>Beranda</h2>
+<div id="mainScroll">
+  <div style="padding:16px;">
+    <h2>DANA Demo</h2>
+    <div>Saldo: <span id="balance">0</span></div>
 
-  <!-- Bar pertama -->
-  <div class="topup-list">
-    <div class="topup-item" onclick="showForm('pulsa')">
-      <img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Pulsa">
-      <span>Pulsa</span>
-    </div>
-    <div class="topup-item" onclick="showForm('data')">
-      <img src="https://img.icons8.com/ios-filled/50/000000/sim-card.png" alt="Data">
-      <span>Data</span>
-    </div>
-    <div class="topup-item" onclick="showForm('listrik')">
-      <img src="https://img.icons8.com/ios-filled/50/000000/electricity.png" alt="Listrik">
-      <span>Listrik</span>
-    </div>
-    <div class="topup-item" onclick="showForm('googleplay')">
-      <img src="https://img.icons8.com/ios-filled/50/000000/google-play.png" alt="Google Play">
-      <span>Google Play</span>
+    <!-- Feature buttons -->
+    <div style="display:flex;flex-wrap:wrap;margin-top:16px;gap:8px;">
+      <button id="pulsaDataBtn">Pulsa/Data</button>
+      <button id="listrikBtn">Listrik</button>
+      <button id="googlePlayBtn">Google Play</button>
+      <button id="topUpGameBtn">Top Up Game</button>
+      <button id="bpjsBtn">BPJS</button>
+      <button id="sendMoneyBtn">Kirim Uang</button>
+      <button id="qrPayBtn">QRIS</button>
+      <button id="danaDealsBtn">Dana Deals</button>
+      <button id="topUpBtn">Top Up</button>
+      <button id="withdrawBtn">Tarik Saldo</button>
     </div>
   </div>
 
-  <!-- Bar kedua -->
-  <div class="topup-list">
-    <div class="topup-item" onclick="showForm('topupgame')">
-      <img src="https://img.icons8.com/ios-filled/50/000000/game-controller.png" alt="Top Up Game">
-      <span>Top Up Game</span>
-    </div>
-    <div class="topup-item" onclick="showForm('bpjs')">
-      <img src="https://img.icons8.com/ios-filled/50/000000/medical-doctor.png" alt="BPJS">
-      <span>BPJS</span>
-    </div>
-    <div class="topup-item" onclick="showForm('kirimuang')">
-      <img src="https://img.icons8.com/ios-filled/50/000000/money-transfer.png" alt="Kirim Uang">
-      <span>Kirim Uang</span>
-    </div>
-    <div class="topup-item" onclick="showForm('qris')">
-      <img src="https://img.icons8.com/ios-filled/50/000000/qr-code.png" alt="QRIS">
-      <span>QRIS</span>
+  <!-- Sheet Template (contoh Pulsa/Data) -->
+  <div id="pulsaSheet" class="sheet">
+    <div class="handle"></div>
+    <div class="title">Pulsa / Data</div>
+    <div class="body">
+      <div class="bg-white rounded-xl p-3 mb-3 border">
+        <label class="text-xs text-gray-500">No. HP</label>
+        <input id="pulsaPhone" type="text" placeholder="08xxx" class="w-full border rounded-lg px-3 py-2 mt-1" inputmode="numeric">
+        <div id="pulsaInfo" class="text-xs text-gray-500 mt-2 hidden"></div>
+      </div>
+      <div class="mb-2">
+        <div class="flex justify-between items-center">
+          <h4 class="font-semibold">Pilih Nominal</h4>
+          <button id="pulsaReset" class="text-xs underline">Reset</button>
+        </div>
+        <div id="pulsaGrid" class="grid grid-cols-3 gap-2 mt-2"></div>
+      </div>
+      <div id="pulsaSummary" class="bg-amber-50 border border-amber-100 rounded-xl p-3 mt-3 hidden">
+        <div class="flex justify-between text-sm"><span>Harga</span><span id="pulsaHarga">Rp0</span></div>
+        <div class="flex justify-between text-sm"><span>Diskon</span><span id="pulsaDiskon">- Rp0</span></div>
+        <div class="flex justify-between text-sm font-semibold mt-1"><span>Total Bayar</span><span id="pulsaTotal">Rp0</span></div>
+        <button id="pulsaBayar" class="w-full mt-3 bg-[#00aaef] text-white rounded-lg py-2 font-medium">Bayar Sekarang</button>
+      </div>
     </div>
   </div>
 
-  <!-- Form container -->
-  <div id="formContainer"></div>
-
+  <!-- Custom Popup -->
+  <div id="customPopup" class="popup-overlay">
+    <div class="popup-content">
+      <div class="popup-title">Info</div>
+      <div class="popup-message">Pesan popup</div>
+      <div class="popup-buttons">
+        <button class="popup-ok">OK</button>
+        <button class="popup-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- Navbar -->
-<div class="navbar">
-  <div class="nav-item active">
-    <img src="https://img.icons8.com/ios-filled/50/007bff/home.png">
-    Beranda
-  </div>
-  <div class="nav-item">
-    <img src="https://img.icons8.com/ios-filled/50/555/activity-history.png">
-    Aktivitas
-  </div>
-  <div class="nav-item">
-    <img src="https://img.icons8.com/ios-filled/50/555/qr-code.png">
-    QRIS
-  </div>
-  <div class="nav-item">
-    <img src="https://img.icons8.com/ios-filled/50/555/wallet.png">
-    Dompet
-  </div>
+<div class="bottom-nav">
+  <button id="tabHome" class="active">Home</button>
+  <button id="tabAktivitas">Aktivitas</button>
+  <button id="tabWallet">Dompet</button>
 </div>
 
 <script>
-const formContainer = document.getElementById('formContainer');
+  // ===== Helpers =====
+  const rupiah = n => 'Rp' + (n||0).toLocaleString('id-ID');
+  const qs = s => document.querySelector(s);
+  const qsa = s => Array.from(document.querySelectorAll(s));
+  const storage = {
+    get(k,def){try{const v=JSON.parse(localStorage.getItem(k)); return v===null||v===undefined?def:v;}catch(e){return def;}},
+    set(k,v){localStorage.setItem(k,JSON.stringify(v));},
+    del(k){localStorage.removeItem(k);}
+  };
+  const BAL_KEY = 'dana_balance';
+  const TX_KEY = 'dana_history';
 
-function showForm(type) {
-  let html = '';
-  switch(type){
-    case 'pulsa':
-      html = `
-      <div class="form-content active">
-        <div class="form-group"><label>Nomor HP</label><input type="text" placeholder="Masukkan Nomor HP"></div>
-        <div class="form-group"><label>Pilih Nominal</label>
-          <select>
-            <option>Rp 10.000</option>
-            <option>Rp 20.000</option>
-            <option>Rp 50.000</option>
-          </select>
-        </div>
-        <button class="ripple-btn" onclick="rippleEffect(event)">Bayar Pulsa</button>
-      </div>`;
-      break;
-    case 'data':
-      html = `
-      <div class="form-content active">
-        <div class="form-group"><label>Nomor HP</label><input type="text" placeholder="Masukkan Nomor HP"></div>
-        <div class="form-group"><label>Paket Data</label>
-          <select>
-            <option>1 GB</option>
-            <option>5 GB</option>
-            <option>10 GB</option>
-          </select>
-        </div>
-        <button class="ripple-btn" onclick="rippleEffect(event)">Beli Data</button>
-      </div>`;
-      break;
-    case 'listrik':
-      html = `
-      <div class="form-content active">
-        <div class="form-group"><label>Nomor Meter / ID Pelanggan</label><input type="text" placeholder="Masukkan Nomor Meter"></div>
-        <div class="form-group"><label>Pilih Nominal Token</label>
-          <select>
-            <option>Rp 20.000</option>
-            <option>Rp 50.000</option>
-            <option>Rp 100.000</option>
-          </select>
-        </div>
-        <button class="ripple-btn" onclick="rippleEffect(event)">Bayar Listrik</button>
-      </div>`;
-      break;
-    case 'googleplay':
-      html = `
-      <div class="form-content active">
-        <div class="form-group"><label>Nomor HP / Email</label><input type="text" placeholder="Masukkan HP/Email"></div>
-        <div class="form-group"><label>Pilih Nominal</label>
-          <select>
-            <option>Rp 50.000</option>
-            <option>Rp 100.000</option>
-            <option>Rp 200.000</option>
-          </select>
-        </div>
-        <button class="ripple-btn" onclick="rippleEffect(event)">Top Up Google Play</button>
-      </div>`;
-      break;
-    case 'topupgame':
-      html = `
-      <div class="form-content active">
-        <div class="form-group"><label>Username Game</label><input type="text" placeholder="Masukkan Username"></div>
-        <div class="form-group"><label>Pilih Nominal</label>
-          <select>
-            <option>50 Diamond</option>
-            <option>100 Diamond</option>
-            <option>200 Diamond</option>
-          </select>
-        </div>
-        <button class="ripple-btn" onclick="rippleEffect(event)">Top Up Game</button>
-      </div>`;
-      break;
-    case 'bpjs':
-      html = `
-      <div class="form-content active">
-        <div class="form-group"><label>Nomor BPJS</label><input type="text" placeholder="Masukkan Nomor BPJS"></div>
-        <div class="form-group"><label>Pilih Bulan</label>
-          <select>
-            <option>1 Bulan</option>
-            <option>3 Bulan</option>
-            <option>6 Bulan</option>
-          </select>
-        </div>
-        <button class="ripple-btn" onclick="rippleEffect(event)">Bayar BPJS</button>
-      </div>`;
-      break;
-    case 'kirimuang':
-      html = `
-      <div class="form-content active">
-        <div class="form-group"><label>Nomor Rekening / HP</label><input type="text" placeholder="Masukkan Tujuan"></div>
-        <div class="form-group"><label>Jumlah</label><input type="text" placeholder="Rp"></div>
-        <button class="ripple-btn" onclick="rippleEffect(event)">Kirim Uang</button>
-      </div>`;
-      break;
-    case 'qris':
-      html = `
-      <div class="form-content active">
-        <div class="form-group"><label>Nomor QRIS / Scan</label><input type="text" placeholder="Masukkan QRIS atau scan"></div>
-        <button class="ripple-btn" onclick="rippleEffect(event)">Bayar QRIS</button>
-      </div>`;
-      break;
+  function showPopup(message,title="Info",onConfirm=null,showCancel=false){
+    const popup = qs('#customPopup');
+    popup.querySelector('.popup-title').innerText = title;
+    popup.querySelector('.popup-message').innerText = message;
+    const btnConfirm = popup.querySelector('.popup-ok');
+    const btnCancel  = popup.querySelector('.popup-cancel');
+    btnConfirm.onclick = ()=>{
+      popup.classList.remove('show');
+      if(onConfirm) onConfirm();
+    };
+    if(showCancel){
+      btnCancel.style.display='inline-block';
+      btnCancel.onclick = ()=> popup.classList.remove('show');
+    }else btnCancel.style.display='none';
+    popup.classList.add('show');
   }
-  formContainer.innerHTML = html;
-}
 
-// Ripple effect
-function rippleEffect(e) {
-  const btn = e.currentTarget;
-  const circle = document.createElement("span");
-  circle.classList.add("ripple");
-  const rect = btn.getBoundingClientRect();
-  circle.style.left = e.clientX - rect.left + "px";
-  circle.style.top = e.clientY - rect.top + "px";
-  btn.appendChild(circle);
-  setTimeout(() => circle.remove(), 600);
-}
+  // ===== Init Balance =====
+  function initBalance(){
+    let b = storage.get(BAL_KEY,null);
+    if(b===null){b=1000000;storage.set(BAL_KEY,b);}
+    qs('#balance').innerText = b.toLocaleString('id-ID');
+  }
+  initBalance();
+
+  // ===== Pulsa/Data Demo =====
+  const pulsaProducts = [
+    {nominal:'5.000',  harga:6000,  diskon:500,  label:'Pulsa 5K'},
+    {nominal:'10.000', harga:11000, diskon:1000, label:'Pulsa 10K'},
+    {nominal:'Data 2GB/7hr',  harga:15000, diskon:2000, label:'Paket Data'}
+  ];
+  const pulsaGrid = qs('#pulsaGrid'); let pulsaSelected=null;
+  function renderPulsaGrid(){
+    pulsaGrid.innerHTML='';
+    pulsaProducts.forEach((p,i)=>{
+      const div=document.createElement('div'); div.className='price-card';
+      div.innerHTML=`<div class="text-sm font-semibold">${p.label.includes('Data')?p.label:'Pulsa'}</div>
+        <div class="text-xs text-gray-600">${p.nominal}</div>
+        <div class="flex items-center justify-between mt-1">
+          <div class="text-sm font-semibold">${rupiah(p.harga-p.diskon)}</div>
+          <span class="pill">- ${rupiah(p.diskon)}</span>
+        </div>`;
+      div.addEventListener('click',()=>{ pulsaSelected=i; qsa('#pulsaGrid .price-card').forEach(x=>x.classList.remove('active')); div.classList.add('active'); updatePulsaSummary(); });
+      pulsaGrid.appendChild(div);
+    });
+  }
+  renderPulsaGrid();
+
+  function updatePulsaSummary(){
+    const sum = qs('#pulsaSummary'); if(pulsaSelected===null){sum.classList.add('hidden');return;}
+    const p=pulsaProducts[pulsaSelected];
+    qs('#pulsaHarga').innerText = rupiah(p.harga);
+    qs('#pulsaDiskon').innerText = '- ' + rupiah(p.diskon);
+    qs('#pulsaTotal').innerText = rupiah(p.harga - p.diskon);
+    sum.classList.remove('hidden');
+  }
+
+  qs('#pulsaReset').addEventListener('click', ()=>{
+    pulsaSelected=null; qsa('#pulsaGrid .price-card').forEach(x=>x.classList.remove('active'));
+    qs('#pulsaSummary').classList.add('hidden'); qs('#pulsaPhone').value='';
+  });
+
+  qs('#pulsaBayar').addEventListener('click', ()=>{
+    const phone = qs('#pulsaPhone').value.trim();
+    if(!/^0[0-9]{9,13}$/.test(phone)){ showPopup('Nomor HP tidak valid'); return; }
+    if(pulsaSelected===null){ showPopup('Pilih nominal dulu'); return; }
+    const p=pulsaProducts[pulsaSelected], total=p.harga-p.diskon;
+    let bal=storage.get(BAL_KEY,0); if(bal<total){ showPopup('Saldo tidak cukup'); return; }
+    bal-=total; storage.set(BAL_KEY,bal); qs('#balance').innerText = bal.toLocaleString('id-ID');
+
+    const tx = storage.get(TX_KEY,[]); tx.unshift({id:'TXN'+Date.now(),ts:new Date().toISOString(),type:'pulsa',target:phone,nominal:p.nominal,harga:p.harga,diskon:p.diskon,total:total,status:'Sukses'}); storage.set(TX_KEY,tx);
+    showPopup('Pembelian '+p.label+' '+p.nominal+' untuk '+phone+' berhasil.\nTotal: '+rupiah(total), 'Berhasil', ()=>{ qs('#pulsaReset').click(); });
+  });
 </script>
-
 </body>
 </html>
